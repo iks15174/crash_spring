@@ -23,6 +23,7 @@ public class AuthController {
 
     @PostMapping(value = "/signup")
     public String signup(MemberVo memberVo){
+        System.out.println("POST REQUEST");
         memberService.saveMember(memberVo);
         return "redirect:/";
     }
