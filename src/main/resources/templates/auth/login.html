@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="fragments/header">
+<th:block layout:fragment="title">
+  <title>This page is a login page</title>
+</th:block>
+
+<th:block layout:fragment="content">
+  <form class="signup-form" th:action="@{/login}" method="POST">
+    <div class="row">
+      <div class="input-field col s12">
+        <label for="user_id">ID</label>
+        <input id="user_id" name="id" type="text" class="validate" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" class="validate" />
+      </div>
+    </div>
+    <input class="signup-btn waves-effect waves-light btn" type="submit" value="로그인" />
+  </form>
+</th:block>
+
+</html>

@@ -21,6 +21,11 @@ public class AuthController {
         return "auth/signup";
     }
 
+    @GetMapping(value = "/login")
+    public String loginView(){
+        return "auth/login";
+    }
+
     @PostMapping(value = "/signup")
     public String signup(MemberVo memberVo){
         System.out.println("POST REQUEST");

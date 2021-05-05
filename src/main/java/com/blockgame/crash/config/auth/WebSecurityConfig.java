@@ -1,4 +1,4 @@
-package com.blockgame.crash.config;
+package com.blockgame.crash.config.auth;
 
 import com.blockgame.crash.service.MemberService;
 
@@ -42,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.formLogin()
             .loginPage("/account/login")
+            .loginProcessingUrl("/login")
             .usernameParameter("id")
             .defaultSuccessUrl("/")
             .permitAll();
