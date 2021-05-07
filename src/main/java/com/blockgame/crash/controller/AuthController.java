@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import com.blockgame.crash.model.MemberVo;
 import com.blockgame.crash.service.MemberService;
+import com.blockgame.crash.validator.MemberVoValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,9 @@ public class AuthController {
     @Autowired
     private MemberService memberService;
 
+    @Autowired
+    private MemberVoValidator memberVoValidator;
+
     @GetMapping(value = "/signup")
     public String signupView(){
         return "auth/signup";
@@ -36,8 +40,13 @@ public class AuthController {
     public String signup(@Valid MemberVo memberVo, Errors errors, Model model){
         if(errors.hasErrors()){
             model.addAttribute("memberVo", memberVo);
-            Map<String, String> validatorResult = memberService.validateHandling(errors);
-            model.addAttribute("validation", validatorResult);
+            memberService.validateHandling(errors, model);
+            return "auth/signup";
+        }
+        memberVoValidator.validate(memberVo, errors);
+        if(errors.hasErrors()){
+            model.addAttribute("memberVo", memberVo);
+            memberService.validateHandling(errors, model);
             return "auth/signup";
         }
         memberService.saveMember(memberVo);

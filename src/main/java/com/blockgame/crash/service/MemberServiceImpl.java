@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
@@ -31,29 +31,25 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
         MemberVo memberVo = memberRepository.findById(id);
-        System.out.println(memberVo);
         if (memberVo != null) {
             return new PrincipalDetails(memberVo);
         }
         return null;
     }
 
-    public Map<String, String> validateHandling(Errors errors) {
-        Map<String, String> validatorResult = new HashMap<>();
+    public void validateHandling(Errors errors, Model model) {
 
         for (FieldError error : errors.getFieldErrors()) {
             String validKeyName = error.getField();
-            validatorResult.put(validKeyName, error.getDefaultMessage());
+            model.addAttribute(validKeyName, error.getDefaultMessage());
         }
-
-        return validatorResult;
     }
 
     @Transactional
     @Override
     public String saveMember(MemberVo memberVo) {
         memberVo.setRole("ROLE_USER");
-        memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
+        //memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword())); -> 비밀번호 4자리 조건에 걸림. 바꿀 것
         return memberRepository.save(memberVo).getId();
     }
 

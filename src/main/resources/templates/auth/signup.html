@@ -8,20 +8,23 @@
   <form class="signup-form" th:action="@{/account/signup}" method="POST">
     <div class="row">
       <div class="input-field col s12">
-        <input id="user_id" name="id" type="text" class="validate" />
         <label for="user_id">ID</label>
+        <input id="user_id" name="id" type="text" class="validate" />
+        <span th:text="${id}"></span>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="user_name" name="name" type="text" class="validate" />
         <label for="user_name">NAME</label>
+        <input id="user_name" name="name" type="text" class="validate" />
+        <span th:text="${name}"></span>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s12">
-        <input id="password" name="password" type="password" class="validate" />
         <label for="password">Password</label>
+        <input id="password" name="password" type="password" class="validate" />
+        <span th:text="${password}"></span>
       </div>
     </div>
     <input class="signup-btn waves-effect waves-light btn" type="submit" value="가입하기" />
