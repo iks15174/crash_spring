@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         //http.csrf().disable();
 
         http.authorizeRequests()
-            .antMatchers("/game/**").authenticated()
+            .antMatchers("/admin/**").authenticated()
             .anyRequest().permitAll();
 
         http.formLogin()

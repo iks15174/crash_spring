@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BoardController {
 
     @GetMapping(value = "/")
-    public String MainView(){
+    public String mainView(){
         return "board/main";
     }
-    
+
+    @GetMapping(value = "/game")
+    public String game(){
+        return "board/game";
+    }
 }

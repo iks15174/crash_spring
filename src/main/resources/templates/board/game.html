@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorator="fragments/header">
+<th:block layout:fragment="title">
+  <title>This page is a signUp page</title>
+</th:block>
+
+<th:block layout:fragment="content">
+  <div>
+    <button onclick="init()">다시하기</button>
+    &nbsp; &nbsp; &nbsp;
+    <span>점수 : </span>
+    <span id="score"></span>
+    &nbsp; &nbsp; &nbsp;
+    <div>
+      <span id="user">user : </span>
+      <span class="nav-link" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+      <span class="nav-link" sec:authorize="!isAuthenticated()">GUEST</span>
+    </div>
+  </div>
+  <canvas id='tutorial'></canvas>
+  <script type="text/javascript" th:src="@{/js/index.js}"></script>
+</th:block>
+
+</html>
