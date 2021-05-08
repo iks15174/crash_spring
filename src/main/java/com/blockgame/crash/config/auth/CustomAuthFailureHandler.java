@@ -34,6 +34,8 @@ public class CustomAuthFailureHandler implements AuthenticationFailureHandler{
 
                 request.setAttribute("errorMessage", errorMessage);
 
+                System.out.println("errorMessage" + errorMessage);
+
                 request.getRequestDispatcher(DEFAULT_FAILURE_URL).forward(request, response);
         
     }

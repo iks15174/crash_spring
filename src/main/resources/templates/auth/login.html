@@ -5,7 +5,7 @@
 </th:block>
 
 <th:block layout:fragment="content">
-  <form class="signup-form" th:action="@{/login}" method="POST">
+  <form class="login-form" th:action="@{/login}" method="POST">
     <div class="row">
       <div class="input-field col s12">
         <label for="user_id">ID</label>
@@ -20,6 +20,7 @@
     </div>
     <input class="signup-btn waves-effect waves-light btn" type="submit" value="로그인" />
   </form>
+  <span th:text="${errorMessage}"></span>
 </th:block>
 
 </html>

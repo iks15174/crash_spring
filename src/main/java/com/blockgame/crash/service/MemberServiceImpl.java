@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public String saveMember(MemberVo memberVo) {
         memberVo.setRole("ROLE_USER");
-        //memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword())); -> 비밀번호 4자리 조건에 걸림. 바꿀 것
+        memberVo.setPassword(bCryptPasswordEncoder.encode(memberVo.getPassword()));
         return memberRepository.save(memberVo).getId();
     }
 
