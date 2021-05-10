@@ -12,11 +12,9 @@
     <span>점수 : </span>
     <span id="score"></span>
     &nbsp; &nbsp; &nbsp;
-    <div>
-      <span id="user">user : </span>
-      <span class="nav-link" sec:authorize="isAuthenticated()" sec:authentication="name"></span>
-      <span class="nav-link" sec:authorize="!isAuthenticated()">GUEST</span>
-    </div>
+    <span id="user">user : </span>
+    <span sec:authorize="isAuthenticated()" sec:authentication="name"></span>
+    <span sec:authorize="!isAuthenticated()">GUEST</span>
   </div>
   <canvas id='tutorial'></canvas>
   <script type="text/javascript" th:src="@{/js/index.js}"></script>

@@ -1,9 +1,5 @@
 package com.blockgame.crash.service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
 import com.blockgame.crash.config.auth.PrincipalDetails;
@@ -20,7 +16,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private MemberRepository memberRepository;

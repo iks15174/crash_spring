@@ -1,6 +1,6 @@
 package com.blockgame.crash.config.auth;
 
-import com.blockgame.crash.service.MemberService;
+import com.blockgame.crash.service.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -17,8 +17,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity //스프링 시큐리티 필터가 스프링 필터체인에 등록이 된다.
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 
-    @Autowired 
-    private MemberService memberService;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

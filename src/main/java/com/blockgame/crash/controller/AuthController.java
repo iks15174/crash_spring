@@ -5,7 +5,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import com.blockgame.crash.model.MemberVo;
-import com.blockgame.crash.service.MemberService;
+import com.blockgame.crash.service.AuthService;
 import com.blockgame.crash.validator.MemberVoValidator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AuthController {
 
     @Autowired
-    private MemberService memberService;
+    private AuthService authService;
 
     @Autowired
     private MemberVoValidator memberVoValidator;
@@ -41,16 +41,16 @@ public class AuthController {
     public String signup(@Valid MemberVo memberVo, Errors errors, Model model){
         if(errors.hasErrors()){
             model.addAttribute("memberVo", memberVo);
-            memberService.validateHandling(errors, model);
+            authService.validateHandling(errors, model);
             return "auth/signup";
         }
         memberVoValidator.validate(memberVo, errors);
         if(errors.hasErrors()){
             model.addAttribute("memberVo", memberVo);
-            memberService.validateHandling(errors, model);
+            authService.validateHandling(errors, model);
             return "auth/signup";
         }
-        memberService.saveMember(memberVo);
+        authService.saveMember(memberVo);
         return "redirect:/";
     }
     

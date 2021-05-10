@@ -1,7 +1,5 @@
 package com.blockgame.crash.repository;
 
-import java.util.List;
-
 import com.blockgame.crash.model.MemberVo;
 
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -241,6 +241,16 @@ class BallControl{
         else{
             app.draw();
             this.block_control.draw();
+            console.log($("#score").html());
+            $.ajax({
+                url: "/game/finished",
+                type: "GET",
+                dataType: "json",
+                data: {
+                    score: $("#score").html()
+                }
+
+            })
             alert("game Finished");
         }
     }
