@@ -1,6 +1,6 @@
 //윈도우 처음 사이즈별로 초기 크기 고정하기
 const width_num = 6;
-const height_num = 12;
+const height_num = 2;
 const speed = 8;
 const timeFrame = 10;
 let clickOn = true;

@@ -23,10 +23,10 @@ public class BoardController {
     }
 
     @GetMapping(value = "/game/finished")
-    public String gameFinished(String score){
+    public String gameFinished(Long score){
 
         boardService.saveScore(score);
 
-        return "";
+        return "redirect:/game";
     }
 }
