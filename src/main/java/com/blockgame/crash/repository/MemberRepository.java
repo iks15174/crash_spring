@@ -11,4 +11,6 @@ public interface MemberRepository extends JpaRepository<MemberVo, Long>{
     public boolean existsByName(String name);
 
     public boolean existsById(String id);
+
+    public Long deleteById(String id);
 }
