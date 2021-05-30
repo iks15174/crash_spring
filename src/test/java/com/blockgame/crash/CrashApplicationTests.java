@@ -23,8 +23,8 @@ class CrashApplicationTests {
 	private MemberRepository memberRepository;
 
 	@Test
-	public void saveScore() {
-		Long score = (long) 25;
+	public void saveRecord() {
+		Long score = (long) 24;
 		MemberVo memberVo = memberRepository.findById("test");
 		RecordVo recordVo = new RecordVo();
 		recordVo.setScore(score);
@@ -85,5 +85,54 @@ class CrashApplicationTests {
 		Long mbr_no = memberRepository.deleteById(id);
 		System.out.println("MBR_NO : " + mbr_no);
 		this.getMember();
+	}
+
+	@Test
+	@Transactional
+	public void updateMember(){
+		String targetId = "test";
+		MemberVo memberVo = memberRepository.findById("test");
+
+		String changedId = "testChanged";
+		String changedPassword = "12345";
+		memberVo.setId(changedId);
+		memberVo.setPassword(changedPassword);
+		memberRepository.save(memberVo);
+
+		memberVo = memberRepository.findById(changedId);
+		System.out.println("START=========================");
+		System.out.println("NAME : " + memberVo.getName());
+		System.out.println("ID : " + memberVo.getId());
+		System.out.println("PASSWORD : " + memberVo.getPassword());
+		System.out.println("FINISH=========================");
+		
+	}
+
+	@Test
+	@Transactional
+	public void updateRecord(){
+		String targetId = "test";
+		Long scoreChanged = (long) 1;
+		MemberVo memberVo = memberRepository.findById(targetId);
+		Long mbrNo = memberVo.getMbrNo();
+
+		List<RecordVo> recordVoList = memberVo.getRecords();
+		for(int i = 0; i < recordVoList.size(); i++){
+			RecordVo tem = recordVoList.get(i);
+			tem.setScore(scoreChanged);
+			recordRepository.save(tem);
+			scoreChanged = scoreChanged + 1;
+		}
+
+		System.out.println(mbrNo);
+
+		recordVoList = recordRepository.findByMember_mbrNo(mbrNo);
+
+		System.out.println("START=========================");
+		for(int i = 0; i < recordVoList.size(); i++){
+			System.out.println("Member ID : " + recordVoList.get(i).getMember().getId());
+			System.out.println("SCORE : " + recordVoList.get(i).getScore());
+		}
+		System.out.println("FINISH=========================");
 	}
 }
