@@ -1,5 +1,7 @@
 package com.blockgame.crash.service;
 
+import java.util.List;
+
 import com.blockgame.crash.config.auth.PrincipalDetails;
 import com.blockgame.crash.model.MemberVo;
 import com.blockgame.crash.model.RecordVo;
@@ -29,6 +31,11 @@ public class BoardServiceImpl implements BoardService {
             recordRepository.save(recordVo);
 
         }
+    }
+
+    @Override
+    public List<RecordVo> getAllRecord() {
+        return recordRepository.findAll();
     }
 
 }
